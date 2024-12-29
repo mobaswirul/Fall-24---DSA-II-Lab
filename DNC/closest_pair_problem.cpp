@@ -12,7 +12,7 @@ double euclideanDistance(pair<int, int>& p1, pair<int, int>& p2){
     return sqrt(x*x + y*y);
 }
 
-double mixedDistance(vector<pair<int, int>>& points, int l, int r, int m, double max_distance){
+double mixedDistance(vector<pair<int, int>> points, int l, int r, int m, double max_distance){
     double min_distance = max_distance;
     for(int i = m; i >= l; i--){
         for(int j = m+1; j <= r; j++){
@@ -26,10 +26,18 @@ double mixedDistance(vector<pair<int, int>>& points, int l, int r, int m, double
 double closestPair(vector<pair<int, int>>& points, int l, int r){
     if(l == r) return DBL_MAX;
     if(r - l == 1) return euclideanDistance(points[l], points[r]);
+
+
     int m = l + (r-l)/2;
+
     double left_distance = closestPair(points, l, m);
     double right_distance = closestPair(points, m+1, r);
+
+
     double min_distance = min(left_distance, right_distance);
+
+
+
     double mixed_distance = mixedDistance(points, l, r, m, min_distance);
     return min(min_distance, mixed_distance);
 }

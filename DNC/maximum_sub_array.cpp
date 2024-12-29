@@ -23,14 +23,17 @@ int maxCrossSum(vector<int>& nums, int l, int m, int r){
 int maxSubArray(vector<int>& nums, int l, int r){
     if(l == r) return nums[l];
     int mid = l + (r-l)/2;
+
     int left_sum = maxSubArray(nums, l, mid);
     int right_sum = maxSubArray(nums, mid+1, r);
+
     int cross_sum = maxCrossSum(nums, l, mid, r);
+    
     return max(max(left_sum, right_sum), cross_sum);
 }
 
 int main(){
-    vector<int> nums = {-2};
+    vector<int> nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
     cout << maxSubArray(nums, 0, nums.size()-1) << endl;
     return 0;
 }

@@ -38,7 +38,6 @@ int knapsack(int remaining_weight, int index){
 
 int main(){
     memset(memory, -1, sizeof(memory));
-
     cout << knapsack(15, 0) << endl;
     return 0;
 }
